@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-bg: #090A0C;
+    --color-sidebar: #0D0F12;
+    --color-surface-primary: #12151A;
+    --color-surface-elevated: #181C22;
+    --color-surface-hover: #20252D;
+    --color-text-primary: #F4F5F7;
+    --color-text-secondary: #A1A8B3;
+    --color-text-muted: #717987;
+    --color-border: #282D35;
+    --color-accent: #8AB4F8;
+    --color-accent-hover: #A6C6FA;
+    --color-accent-subtle: #172337;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #090A0C;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #282D35;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3B424E;
+  }
+}
+
+/* Kanban Drag and Drop Styles */
+.task-card {
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.15s ease, opacity 0.15s ease, border-color 0.15s ease;
+  user-select: none;
+}
+
+.task-card:hover {
+  border-color: #38404E;
+  transform: translateY(-1px);
+}
+
+.task-card.dragging {
+  opacity: 0.45;
+  transform: scale(0.98);
+}
+
+.kanban-column {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.kanban-column.drag-over {
+  background-color: rgba(138, 180, 248, 0.04);
+  border-color: #8AB4F8 !important;
+}
+
+.drop-indicator {
+  height: 3px;
+  background-color: #8AB4F8;
+  border-radius: 2px;
+  margin: 4px 0;
+  box-shadow: 0 0 8px rgba(138, 180, 248, 0.6);
+  pointer-events: none;
+}
+
+/* Modal transitions */
+.modal-backdrop {
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-content {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Compact mode utility */
+.density-compact .task-card-inner {
+  padding: 0.625rem !important;
+}
+
+.density-compact .task-row {
+  padding-top: 0.5rem !important;
+  padding-bottom: 0.5rem !important;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.reduced-motion *, .reduced-motion ::before, .reduced-motion ::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
